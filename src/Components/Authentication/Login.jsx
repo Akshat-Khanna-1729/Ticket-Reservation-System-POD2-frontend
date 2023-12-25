@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logo from '../../Assets/logo.png'
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext.js';
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
 
   async function save(event) {
@@ -23,7 +24,8 @@ const Login = () => {
         if(res.data.message == "Email not exists"){
           alert("Email does not exist");
         }
-        else if(res.data.message == "Login success"){
+        else if(res.data.message == "Login success for user"){
+          login(res.data.user);
           navigate('/home');
         }
         else{

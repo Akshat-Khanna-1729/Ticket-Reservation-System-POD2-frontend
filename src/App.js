@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import Login from './Components/Authentication/Login';
 import Signup from './Components/Authentication/Signup';
 import Navbar from './Components/Dashboard/Navbar';
@@ -6,13 +7,14 @@ import Profile from './Components/Dashboard/Profile';
 import MyBookings from './Components/Dashboard/MyBookings/MyBookings';
 import ContactUs from './Components/Dashboard/ContactUs';
 import Book from './Components/Dashboard/Home/Book/Book.jsx';
+import { useAuth } from './Context/AuthContext';
 import "./App.css";
 import {BrowserRouter as Router, Routes, Route,Navigate} from 'react-router-dom';
 
+
 function App() {
 
-  // const { isAuthenticated} = useContext(AuthContext);
-  const isAuthenticated = true;
+  const isAuthenticated = useAuth();
 
   return (
     <div>
@@ -28,12 +30,12 @@ function App() {
             </div>
             ): (<div><Navigate to= "/"/></div>)}/>
 
-          <Route path = '/home/booking' element = {
+          <Route path = '/home/booking' element = {isAuthenticated?(
             <div className="container1">
               <Navbar/>
               <Book/>
             </div>
-          }/>
+          ): (<div><Navigate to= "/"/></div>)}/>
 
           <Route path = '/profile' element = {
             <div className="container1">
