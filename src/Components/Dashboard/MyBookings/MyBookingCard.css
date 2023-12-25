@@ -1,0 +1,46 @@
+.bookingcard{
+    margin-right: 30px;
+    width: 200px;
+    background-color: #F2E6FF;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.bookingcard-data{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookingcard-data-1{
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #CEB9E5;
+}
+
+.bookingcard-data-2{
+    width: 100%;
+    padding: 10px 0px;
+    border-radius: 10px;
+    background-color: #CEB9E5;
+    color: #460073;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.bookingcard-cancel{
+    width: 100%;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #460073;
+    color:#F2E6FF;
+}
+
+.bookingcard-cancel:hover{
+    background-color: #CEB9E5;
+    color:#460073;
+}

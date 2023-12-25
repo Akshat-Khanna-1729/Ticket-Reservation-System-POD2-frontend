@@ -1,0 +1,40 @@
+.traincard{
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+    padding: 10px 30px;
+    background-color: #F2E6FF;
+    margin-bottom: 30px;
+}
+
+.traincard-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.traincard-data-down{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    background-color: white;
+    border-radius: 30px;
+    min-width: 100px;
+}
+
+.traincard-data-btn{
+    border-radius: 30px;
+    background-color: #460073;
+    height: 30px;
+    width: 200px;
+    color: #F2E6FF;
+}
+
+.traincard-data-btn:hover{
+    background-color: #CEB9E5;
+    color: #460073;
+}

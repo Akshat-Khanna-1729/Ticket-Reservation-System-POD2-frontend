@@ -1,0 +1,13 @@
+.mybookings{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-left: 200px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.mybookings-heading{
+    margin-top: 30px;
+    margin-left: 230px;
+}
