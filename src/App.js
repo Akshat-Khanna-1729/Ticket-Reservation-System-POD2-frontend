@@ -15,6 +15,8 @@ import {BrowserRouter as Router, Routes, Route,Navigate} from 'react-router-dom'
 function App() {
 
   const isAuthenticated = useAuth();
+  console.log(isAuthenticated);
+  // const isAuthenticated = false;
 
   return (
     <div>

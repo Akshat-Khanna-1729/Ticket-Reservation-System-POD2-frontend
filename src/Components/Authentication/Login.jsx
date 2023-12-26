@@ -14,25 +14,28 @@ const Login = () => {
   const { login } = useAuth();
 
 
+
   async function save(event) {
     event.preventDefault();
     try{
-      await axios.post("API URL", {
-        email: email,
-        password: password,  
-      }).then((res) =>{
-        if(res.data.message == "Email not exists"){
-          alert("Email does not exist");
-        }
-        else if(res.data.message == "Login success for user"){
-          login(res.data.user);
+      await axios.post("http://localhost:1010/login", {
+        "email":email,
+        "password":password
+      })
+      .then((res) =>{
+        if(res.data.message === "Invalid email"){
+          alert("Email is not valid");
+        } else if(res.data.message === "Invalid password"){
+          alert("Password is not valid");
+        } else if(res.data.message === "Login successful"){
+          login(res.data.jsonData);
+          //console.log(res.data.jsonData);
           navigate('/home');
+          
         }
-        else{
-          alert("Email and password do not match");
-        }
+        console.log(res.data);
       }, fail => {
-        console.error(fail);
+        console.error(fail.response.data);
       });
     }catch(err){
       alert(err);

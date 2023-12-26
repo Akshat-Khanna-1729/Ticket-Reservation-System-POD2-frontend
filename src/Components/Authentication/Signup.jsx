@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import logo from '../../Assets/logo.png';
 import './Signup.css';
+import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -10,17 +12,34 @@ const Signup = () => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   async function save(event) {
     event.preventDefault();
+    const formdata = new FormData();
+    formdata.append('firstname', firstname);
+    formdata.append('lastname', lastname);
+    formdata.append('email', email);
+    formdata.append('password', password);
+
+    for(const [key,value] of formdata.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    
     try{
-      await axios.post("API URL", {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        password: password,  
+      await axios.post("http://localhost:1010/registration/adduser", formdata, {
+        headers: {
+          'Content-Type':'multipart/form-data'
+        }
+      }).then((res)=>{
+          console.log(res.data);
+          navigate('/home');
+      }, fail =>{
+        if(fail.response.data === "User already exists"){
+          alert("User already exists. Please login");
+          navigate('/');
+        }
+        console.error(fail.response.data);
       });
-      alert("Successfully Registered");
     }catch(err){
       alert(err);
     }
