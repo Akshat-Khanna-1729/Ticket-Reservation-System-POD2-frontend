@@ -1,0 +1,50 @@
+.profile{
+    padding:30px;
+    margin-left: 200px;
+}
+
+.profile-data{
+    display: flex;
+    margin-top: 20px;
+    background-color: #F2E6FF;
+    border-radius: 20px;
+}
+
+.profile-left{
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.profile-left p{
+    height: 30px;
+    width: 150px;
+    padding-right: 10px;
+    border-radius: 30px;
+    text-align: right;
+    margin: 5px;
+}
+
+.profile-button button{
+    height: 30px;
+    width: 200px;
+    border-radius: 30px;
+    background-color: #460073;
+    margin-top: 30px;
+    color: #F2E6FF;
+}
+
+
+.profile-right{
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.profile-right p{
+    font-weight: 500;
+    height: 30px;
+    width: 200px;
+    padding-right: 100px;
+    border-radius: 30px;
+    margin: 5px;
+}

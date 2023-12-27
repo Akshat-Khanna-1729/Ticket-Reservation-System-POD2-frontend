@@ -11,7 +11,8 @@ const Home = () => {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [date, setDate] = useState('');
-  const [numberofpassengers, setNumberOfPassengers] = useState('');
+  const [numberofpassengers, setNumberOfPassengers] = useState(1);
+  const [time, setTime] = useState('');
 
   async function save(event) {
     event.preventDefault();
@@ -21,7 +22,8 @@ const Home = () => {
         start: start,
         end: end,
         date: date,
-        numberofpassengers: numberofpassengers,  
+        numberofpassengers: numberofpassengers,
+        time: time,  
       }).then((res) =>{
         if(res.data.message == "Trains found"){
           setSearchTrains(true);
@@ -87,10 +89,25 @@ const Home = () => {
               <label>Number of Passengers</label>
               <input
                 type="number"
+                max={5}
+                min={1}
                 id="numberofpassengers"
                 placeholder="Enter the Number of Passengers"
                 value={numberofpassengers}
                 onChange={(event) => setNumberOfPassengers(event.target.value)}
+              />
+              </div>
+            </div>
+
+            <div className="home-container-search-form-stations">
+              <div className= "search-form">
+              <label>Time of travel</label>
+              <input
+                type="time"
+                id="time"
+                placeholder="Enter Time"
+                value={time}
+                onChange={(event) => setDate(event.target.value)}
               />
               </div>
             </div>
