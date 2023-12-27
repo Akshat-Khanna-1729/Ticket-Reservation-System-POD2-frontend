@@ -29,7 +29,6 @@ const Login = () => {
           alert("Password is not valid");
         } else if(res.data.message === "Login successful"){
           login(res.data.jsonData);
-          //console.log(res.data.jsonData);
           navigate('/home');
           
         }

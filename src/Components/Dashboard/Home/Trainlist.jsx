@@ -1,16 +1,16 @@
 import React from 'react';
 import './Trainlist.css';
 import Traincard from './Traincard.jsx'
-import trainData from './TrainData.js'
 
-const Trainlist = () => {
+const Trainlist = ({trainData, start, end, date,  startTime, fare, numberofpassengers}) => {
+  
   return (
     <div>
       {trainData.map(item => (
-        <Traincard start={item.start} end={item.end} vacancy={item.vacancy} fare={item.fare}/>
+        <Traincard name = {item.trainName} start={start} date={date} startTime={startTime} end={end}  fare={fare} numberofpassengers={numberofpassengers}/>
       ))}
     </div>
   )
 }
 
-export default Trainlist
+export default Trainlist;

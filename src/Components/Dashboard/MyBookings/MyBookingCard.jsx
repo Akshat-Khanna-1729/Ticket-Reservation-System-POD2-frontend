@@ -12,14 +12,14 @@ const MyBookingCard = (props) => {
             <div className="bookingcard-data">
                 <div className="bookingcard-data-1">
                     <div>Booking id: {props.id}</div>
-                    <div>Booking Date: {props.bookingdate}</div>
+                    <div>Booking Date: {props.fare}</div>
                 </div>
 
                 <div className="bookingcard-data-1">
                     <div>Travel Date: {props.traveldate}</div>
                     <div>Boarding Station: {props.start}</div>
                     <div>Destination Station: {props.end}</div>
-                    <div>Boarding Time: {props.starttime}</div>
+                    {/* <div>Boarding Time: {props.starttime}</div> */}
                 </div>
 
                 

@@ -1,0 +1,59 @@
+.payment{
+    margin-left: 200px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+   
+}
+ 
+.payment-details{
+    display: flex;
+    flex-direction: column;
+}
+ 
+.payment-details-date{
+    padding: 20px 30px;
+}
+ 
+.payment-details-stations{
+    display: flex;
+    justify-content: space-between;
+    background-color: #CEB9E5;
+    border-radius: 20px;
+    padding: 30px;
+    width: 400px;
+}
+ 
+.payment-details-stations-list{
+    align-items: center;
+}
+ 
+.payment-form{
+    margin-top: 30px;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: #CEB9E5;
+}
+ 
+.card-details{
+    margin-top: 20px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #F2E6FF;
+}
+ 
+.submit{
+    margin-top: 20px;
+    border-radius: 30px;
+    width: 100px;
+    height: 30px;
+    background-color: #460073;
+    color: #CEB9E5;
+}
+ 
+.submit:hover{
+    color: #460073;
+    background-color: #F2E6FF;
+}

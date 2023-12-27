@@ -6,7 +6,7 @@ import Home from './Components/Dashboard/Home/Home';
 import Profile from './Components/Dashboard/Profile';
 import MyBookings from './Components/Dashboard/MyBookings/MyBookings';
 import ContactUs from './Components/Dashboard/ContactUs';
-import Book from './Components/Dashboard/Home/Book/Book.jsx';
+import Payment from './Components/Dashboard/Home/Payment/Payment';
 import { useAuth } from './Context/AuthContext';
 import "./App.css";
 import {BrowserRouter as Router, Routes, Route,Navigate} from 'react-router-dom';
@@ -30,12 +30,12 @@ function App() {
             </div>
             ): (<div><Navigate to= "/"/></div>)}/>
 
-          <Route path = '/home/booking' element = {user?(
+          <Route path = '/payment' element = {
             <div className="container1">
               <Navbar/>
-              <Book/>
+              <Payment/>
             </div>
-          ): (<div><Navigate to= "/"/></div>)}/>
+          }/>
 
           <Route path = '/profile' element = {user?(
             <div className="container1">

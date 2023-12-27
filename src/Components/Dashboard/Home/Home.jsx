@@ -2,40 +2,67 @@ import React,{useState} from 'react';
 import './Home.css';
 import axios from 'axios';
 import Trainlist from './Trainlist';
-import Traincard from './Traincard';
+import { useAuth } from '../../../Context/AuthContext';
 
 const Home = () => {
   
-  const [user] = useState("");
+  const {user} = useAuth();
   const [searchtrains, setSearchTrains] = useState(false);
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [date, setDate] = useState('');
   const [numberofpassengers, setNumberOfPassengers] = useState(1);
   const [time, setTime] = useState('');
+  const [trainData, setTrainData] = useState([]);
+  
+    const extractNumber = (code) => {
+      // Use regular expression to extract the numeric part
+      const matches = code.match(/\d+/);
+      
+      // Check if there is a match
+      if (matches) {
+        // Convert the matched string to a number
+        const numericPart = parseInt(matches[0], 10);
+        return numericPart;
+      } else {
+        // Handle the case where there is no numeric part
+        return null;
+      }
+    }
+  const calculateFare = () => {
+      const startNumber = extractNumber(start);
+      const endNumber = extractNumber(end);
+      return (endNumber - startNumber)*numberofpassengers*100;
+  }
+  const formatTime = (selectedTime) => {
+    const [hours, minutes] = selectedTime.split(':');
+    const roundedHours = Math.ceil((parseInt(minutes) / 60) + parseInt(hours)) % 24;
+    return `T${roundedHours}`;
+  };
+
+  const formattedTime = formatTime(time);
+
+  const parseFormattedTime = (formattedTime) => {
+    const hour = formattedTime.slice(1);
+    return `${hour}:00`;
+  };
+
+  const travelTime = parseFormattedTime(formattedTime);
 
   async function save(event) {
     event.preventDefault();
     setSearchTrains(true);
-    try{
-      await axios.post("API URL", {
-        start: start,
-        end: end,
-        date: date,
-        numberofpassengers: numberofpassengers,
-        time: time,  
-      }).then((res) =>{
-        if(res.data.message == "Trains found"){
-          setSearchTrains(true);
-        }
-        else{
-          alert("No trains available");
-        }
-      }, fail => {
-        console.error(fail);
+    
+    try {
+      
+      const response = await axios.get(`http://localhost:1010/train/search?time=${formattedTime}&station_code=${start}`, {
       });
-    }catch(err){
-      alert(err);
+      console.log(response.data);
+      setSearchTrains(true);
+      setTrainData(response.data);
+    } catch (err) {
+      console.error(err);
+      alert("Error while fetching data");
     }
   
   }
@@ -44,7 +71,7 @@ const Home = () => {
     <div className="home-container">
 
       <div className="home-container-search">
-        <h1>WELCOME, {user}</h1>
+        <h1>WELCOME, {user.firstname}</h1>
         <h1>BOOK YOUR TICKETS NOW!</h1>
 
         <div className="home-container-search-form">
@@ -107,7 +134,7 @@ const Home = () => {
                 id="time"
                 placeholder="Enter Time"
                 value={time}
-                onChange={(event) => setDate(event.target.value)}
+                onChange={(event) => setTime(event.target.value)}
               />
               </div>
             </div>
@@ -121,7 +148,7 @@ const Home = () => {
 
       <div className="home-container-trains">
         <div>
-          {searchtrains && <Trainlist/>}
+          {searchtrains && <Trainlist trainData={trainData} start={start} end={end} date={date} startTime={travelTime} fare={calculateFare()} numberofpassengers={numberofpassengers}/>}
         </div>
       </div>
 
